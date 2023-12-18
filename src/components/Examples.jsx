@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 import TabButton from "./TabButton";
+import Section from "./Section";
+import Tabs from "./Tabs";
 import { EXAMPLES } from "../data";
 
 export default function Examples() {
@@ -26,34 +28,37 @@ export default function Examples() {
     );
   }
   return (
-    <section id="examples">
-      <h2>Examples</h2>
-      <menu>
-        <TabButton
-          isSelected={selectedTopic === "components"}
-          onSelect={() => handleSelect("components")}
-          label="Components"
-        />
-        <TabButton
-          isSelected={selectedTopic === "jsx"}
-          onSelect={() => handleSelect("jsx")}
-          label="JSX"
-        />
-        <TabButton
-          isSelected={selectedTopic === "props"}
-          onSelect={() => handleSelect("props")}
-          label="Props"
-        />
-        <TabButton
-          isSelected={selectedTopic === "state"}
-          onSelect={() => handleSelect("state")}
-          label="State"
-        />
-      </menu>
-      {/* using if statement with clean code */}
-      {tabContent}
-      {/* using operator && */}
-      {/* {!selectedTopic && <p>Please select a topic.</p>}
+    <Section title="Examples" id="examples">
+      <Tabs
+        buttons={
+          <>
+            <TabButton
+              isSelected={selectedTopic === "components"}
+              onClick={() => handleSelect("components")}
+              label="Components"
+            />
+            <TabButton
+              isSelected={selectedTopic === "jsx"}
+              onClick={() => handleSelect("jsx")}
+              label="JSX"
+            />
+            <TabButton
+              isSelected={selectedTopic === "props"}
+              onClick={() => handleSelect("props")}
+              label="Props"
+            />
+            <TabButton
+              isSelected={selectedTopic === "state"}
+              onClick={() => handleSelect("state")}
+              label="State"
+            />
+          </>
+        }
+      >
+        {/* using if statement with clean code */}
+        {tabContent}
+        {/* using operator && */}
+        {/* {!selectedTopic && <p>Please select a topic.</p>}
           {selectedTopic && (
             <div id="tab-content">
               <h3>{EXAMPLES[selectedTopic].title}</h3>
@@ -63,8 +68,8 @@ export default function Examples() {
               </pre>
             </div>
           )} */}
-      {/* using if ternary */}
-      {/* {!selectedTopic ? (
+        {/* using if ternary */}
+        {/* {!selectedTopic ? (
             <p>Please select a topic.</p>
           ) : (
             <div id="tab-content">
@@ -75,6 +80,7 @@ export default function Examples() {
               </pre>
             </div>
           )} */}
-    </section>
+      </Tabs>
+    </Section>
   );
 }
